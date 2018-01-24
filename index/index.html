@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SG - Menu</title>
+	<link rel="icon" type="img/ico" href="img/favicon-diamond.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+	<!-- demo styles -->
+	<link rel="stylesheet" type="text/css" href="css/demo.css" />
+	<!-- menu styles -->
+	<link rel="stylesheet" type="text/css" href="css/component.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+	<script src="js/modernizr-custom.js"></script>
+
+</head>
+
+
+
+<body>
+	<!-- Main container -->
+	<div class="container-fluid">
+		<!-- Blueprint header -->
+		<header class="bp-header cf">
+			<div class="dummy-logo">
+				<div class="dummy-icon"><i class="fa fa-diamond fa-lg"></i></div>
+				<h2 class="dummy-heading"><b>Arteik</b></h2>
+			</div>
+			<div class="bp-header__main">
+				<span class="bp-header__present">TJHSST <span class="bp-tooltip bp-icon bp-icon--about" data-content="Index made after staring at large quanties of Codrops tutorials."></span></span>
+				<h1 class="bp-header__title">Shomik <b>Ghose</b></h1>
+			</div>
+		</header>
+		<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+		<nav id="ml-menu" class="menu">
+			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+			<div class="menu__wrap">
+				<ul data-menu="main" class="menu__level">
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="#">Web Labs</a></li>
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-2" href="#">AI Labs</a></li>
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-3" href="#">Personal Files</a></li>
+				</ul>
+				<!-- Submenu 1 -->
+				<ul data-menu="submenu-1" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="#">01 - Introduction</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">02 - Quiz</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">03 - DOM Traversal</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">04 - Forms</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">05 - RegEx</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">Upload</a></li>
+				</ul>
+				<!-- Submenu 2 -->
+				<ul data-menu="submenu-2" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="#">Computer Vision</a></li>
+				</ul>
+				<!-- Submenu 3 -->
+				<ul data-menu="submenu-3" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="#">YNCA</a></li>
+			</div>
+		</nav>
+		<div class="content">
+			<p class="info">Use the left hand navbar</p>
+			<!-- Ajax loaded content here -->
+		</div>
+	</div>
+	<!-- /view -->
+	<script src="js/classie.js"></script>
+	<script src="js/labs.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	(function() {
+		var menuEl = document.getElementById('ml-menu'),
+			mlmenu = new MLMenu(menuEl, {
+				initialBreadcrumb : 'home', // initial breadcrumb text
+				backCtrl : true, // show back button
+				itemsDelayInterval : 60, // delay between each menu item sliding animation
+				onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			});
+
+		// mobile menu toggle
+		function openMenu() {
+			classie.add(menuEl, 'menu--open');
+		}
+
+		function closeMenu() {
+			classie.remove(menuEl, 'menu--open');
+		}
+
+		// simulate grid content loading
+		var gridWrapper = document.querySelector('.content');
+
+		function loadDummyData(ev, itemName) {
+			ev.preventDefault();
+
+			closeMenu();
+			gridWrapper.innerHTML = '';
+			classie.add(gridWrapper, 'content--loading');
+			setTimeout(function() {
+				classie.remove(gridWrapper, 'content--loading');
+				gridWrapper.innerHTML = '<ul class="products">' + labs[itemName] + '<ul>';
+			}, 1500);
+		}
+	})();
+	</script>
+</body>
+
+</html>

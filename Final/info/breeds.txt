@@ -1,0 +1,12 @@
+pugs
+poodles
+shiba
+huskies
+labs
+beagles
+corgi
+retriever
+boxer
+shepard
+bulldog
+chihuahua

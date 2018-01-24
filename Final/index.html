@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Upper Pupper</title>
+	<link rel="icon" type="img/ico" href="img/favicon-diamond.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+ 	<script src="js/elo.js"></script>
+	<!-- center stuff styles -->
+	<link rel="stylesheet" type="text/css" href="css/display.css" />
+	<!-- menu styles -->
+	<link rel="stylesheet" type="text/css" href="css/menu.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
+	<script src="js/modernizr-custom.js"></script>
+
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+		<header class="header cf">
+			<div class="dummy-logo">
+				<div class="dummy-icon"><i class="fa fa-diamond fa-lg"></i></div>
+				<h2 class="dummy-heading"><b>Upper Pupper</b></h2>
+			</div>
+		</header>
+		<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+		<nav id="ml-menu" class="menu">
+			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+			<div class="menu__wrap">
+				<ul data-menu="main" class="menu__level">
+					<li class="menu__item"><a class="menu__link" data-submenu="submenu-1" href="#">Upper Pupper</a></li>
+				</ul>
+				<ul data-menu="submenu-1" class="menu__level">
+					<li class="menu__item"><a class="menu__link" href="#">Vote for Puppers</a></li>
+					<li class="menu__item"><a class="menu__link" href="#">Pupper Leader Board</a></li>
+				</ul>
+
+			</div>
+		</nav>
+		<div class="content">
+			<p class="info">Use the left hand navbar</p>
+			<!-- AJAX stuff loaded content here -->
+		</div>
+	</div>
+	<!-- /view -->
+	<script src="js/classie.js"></script>
+	<script src="js/labs.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	(function() {
+		var menuEl = document.getElementById('ml-menu'),
+			mlmenu = new MLMenu(menuEl, {
+				initialBreadcrumb : 'Pupper House', // initial breadcrumb text
+				backCtrl : true, // show back button
+				itemsDelayInterval : 60, // delay between each menu item sliding animation
+				onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			});
+
+		function openMenu() {
+			classie.add(menuEl, 'menu--open');
+		}
+
+		function closeMenu() {
+			classie.remove(menuEl, 'menu--open');
+		}
+
+		// simulate grid content loading
+		var gridWrapper = document.querySelector('.content');
+
+		function loadDummyData(ev, itemName) {
+			ev.preventDefault();
+
+			closeMenu();
+			gridWrapper.innerHTML = '';
+			classie.add(gridWrapper, 'content--loading');
+			setTimeout(function() {
+				classie.remove(gridWrapper, 'content--loading');
+				gridWrapper.innerHTML = '<ul class="stuff">' + labs[itemName] + '<ul>';
+			}, 1500);
+		}
+	})();
+	</script>
+</body>
+
+</html>

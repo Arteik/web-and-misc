@@ -1,0 +1,117 @@
+
+<!doctype html>
+
+<html lang = "en-US">
+	<head>
+		<title>Lab2</title>
+    <style>
+      /*Standard for all pages*/
+      #header{
+        position:relative;
+        background:#2C3E50;
+        width:180px;
+        height:180px;
+        top:-10px;
+        left:40px;
+      }
+      #home{
+        text-decoration: none;
+        position:relative;
+        font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+        color:white;
+        font-size:72pt;
+        left:35px;
+        top:30px;
+      
+      }
+      #home:hover{
+        display:block;
+        color:transparent;
+        width:250px;
+        height:117px;
+        background: url("../house.png") no-repeat;
+        background-size:contain;
+        left:18px;
+      }
+      #back{
+        background: url("back.jpg");
+        background-size:cover;
+      }
+      /* End of standard */
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  </head>
+
+  <body id="back" >
+    <div id="header">
+      <a href="../index.html" id="home">SG</a>
+    </div>
+
+<div class="container" onclick="fade(event)">
+        <h1>I Love Brian Yu</h1>
+        <p>A comprehensive list of all the reasons why you should too</p>
+    
+        <br>
+        <div class="jumbotron">
+            <h2>Physical Features</h2>
+            <ul class="list-group">
+                <li class="list-group-item active">Face</li>
+                <li class="list-group-item">Beautiful Eyes</li>
+                <li class="list-group-item">Great Nose</li>
+                <li class="list-group-item">Large Ears</li>
+            </ul>
+        </div>
+        <div class="jumbotron">
+            <span><h2>Non Physical Attributes</h2></span>
+            <ul class="list-group">
+                <li class="list-group-item active">Personality</li>
+                <li class="list-group-item">A+ Sense of Humour</li>
+                <li class="list-group-item">Generous</li>
+                <li class="list-group-item">Kind</li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item active">Misc</li>
+                <li class="list-group-item">Free Money</li>
+                <li class="list-group-item">Ego Boost to those with whom he associates</li>
+                <li class="list-group-item">Acceptable Taste in Music</li>
+            </ul>
+        </div>
+
+        <script>  
+          $(document).delegate('*', 'click', function(event) {
+            var opacity = 1.0;
+
+            function onClick() {
+                target = event.target;
+                if (target.childElementCount > 0) {
+                    fade(target.firstElementChild);
+                } else if (target.nextElementSibling !== null) {
+                    fade(target.nextElementSibling);
+                } else {
+                    current = target.parentElement;
+                    while (current.nextElementSibling === null) {
+                        current = current.parentElement;
+                    }
+                    fade(current.nextElementSibling);
+                }
+            }
+        
+            function fade(element) {
+                $(element).fadeOut();
+                setTimeout(function() {
+                    $(element).fadeIn();
+                }, 400);
+            }
+            onClick();
+        });
+        </script>
+</div>
+
+
+  </body>
+
+</html>

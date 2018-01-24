@@ -1,0 +1,38 @@
+--------------------------------------
+
+Name: Prof. Pompano
+IP Address:10.240.0.238 This number should be unique to each student. Multiple entries under the same IP indicate multiple submissions from the same device.
+Date: 2018-01-23
+TA: Bob
+Section: 100
+Correct IDs:2/9
+
+Offered Solution: Array
+(
+    [0] => 1
+    [1] => 2
+    [2] => 3
+    [3] => 4
+    [4] => 5
+    [5] => 6
+    [6] => 7
+    [7] => 8
+    [8] => 9
+)
+
+Solution: Array
+(
+    [0] => 1
+    [1] => 5
+    [2] => 8
+    [3] => 4
+    [4] => 9
+    [5] => 2
+    [6] => 6
+    [7] => 7
+    [8] => 3
+)
+
+
+Additional comments: 10
+

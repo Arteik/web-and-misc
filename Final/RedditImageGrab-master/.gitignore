@@ -1,0 +1,15 @@
+*/*.jpg
+*.swp
+*.bak
+*.DS_Store
+*.sh
+*.pyc
+/.idea
+
+
+/.project
+/*~
+/*.webm
+/gfycat
+/build
+/.pydevproject

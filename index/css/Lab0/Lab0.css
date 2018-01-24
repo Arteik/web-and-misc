@@ -1,0 +1,9 @@
+.no-deco:hover,
+.no-deco:focus{
+    color:#5c5edc;
+    text-decoration:none;
+}
+
+/* Rest is Bootstrap or general */
+
+

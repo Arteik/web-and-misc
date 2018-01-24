@@ -1,0 +1,210 @@
+<!doctype html>
+
+<html lang = "en-US">
+	<head>
+		<title>Lab3</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	</head>
+
+	<body id="back">
+		<div id="header">
+			<a href="../index.html" id="home">SG</a>
+		</div>
+	
+  <script>
+    $(function() {
+        $("#today")[0].valueAsDate = new Date(); 
+            $("input[name=display]").change(function(e) {
+                if ($(this).val() == "drop") {
+                    $("select.toggle").each(function() {
+                        $(this).removeAttr("size");
+                    });
+                }
+                else {
+                    $("select.toggle").each(function() {
+                        $(this).attr("size", 4);
+                    });
+                }
+            });
+            
+            $("#genre").change(function(e) {
+                $("#sub option").hide().removeClass("visible");
+                $("#sub ." + $(this).val()).show().addClass("visible");
+                $("#sub").val($("#sub option.visible")[0].value);
+            });
+            
+            $("#zip").keyup(function(e) {
+                if ($(this).val().length == 5) {
+                    $.getJSON("https://ziptasticapi.com/" + encodeURIComponent($(this).val()), function(data) {
+                        if (!data.error) {
+                            $("#city").val(data.city.charAt(0).toUpperCase() + data.city.slice(1).toLowerCase(0));
+                            $("#state").val(data.state);
+                        }
+                    });
+                }
+            });
+
+        });
+
+  </script>
+  
+  	<div class="container">
+    	<div class="jumbotron">
+          <h1>Survery</h1>
+          <p>Don't ask questions, just fill it out</p>
+        </div>
+        
+        <form action="Lab3.php" method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Personal Information</h2>
+                    <fieldset class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" class="form-control" required />
+                    </fieldset>
+                    
+                    <fieldset class="form-group">
+                        <label for="today">Current Date</label>
+                        <input type="date" id="today" name="today" class="form-control" required />
+                    </fieldset>
+                    
+                    <fieldset class="form-group">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" id="zip" name="zip" class="form-control" required />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" class="form-control" required />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="city">State</label>
+                        <select id="state" name="state" class="form-control">
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </fieldset>
+                </div>
+            
+                <div class="col-md-6">
+                        <h2>Favourite Games
+ 
+                            <div id="radios" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="display" id="drop" autocomplete="off" checked> Dropdown
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="display" id="list" autocomplete="off"> List
+                                </label>
+                            </div>
+                            
+                        </h2>                    
+                    <fieldset class="form-group">
+                        <label for="genre">Favourite Genre?</label>
+                        <select id="genre" name="genre" class="form-control toggle">
+                            <option value="action">Action</option>
+                            <option value="adv">Adventure</option>
+                            <option value="role">Roleplay</option>
+                            <option value="simul">Simulation</option>
+                            <option value="strat">Strategy</option>
+                            <option value="sport">Sports</option>
+                        </select>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="sub">Favourite Subgenre?</label>
+                        <select id="sub" name="sub" class="form-control toggle">
+                            <option class="action" value="plat">Platform</option>
+                            <option class="action" value="shoot">Shooter</option>
+                            <option class="action" value="fight">Fighter</option>
+                            <option class="adv" value="text">Text Adventure</option>
+                            <option class="adv" value="graph">Graphic Adventure</option>
+                            <option class="adv" value="visu">Visual Novels</option>
+                            <option class="adv" value="movie">Interactive Movie</option>
+                            <option class="role" value="actrpg">Action RPG</option>
+                            <option class="role" value="mmorpg">MMORPG</option>
+                            <option class="role" value="rogue">Roguelike</option>
+                            <option class="role" value="sand">Sandbox RPG</option>
+                            <option class="role" value="choice">Choices</option>
+                            <option class="simul" value="construct">Construction</option>
+                            <option class="simul" value="life">Life Simulator</option>
+                            <option class="simul" value="vehicle">Vehicle Simulator</option>
+                            <option class="strat" value="rts">Real Time Strategy</option>
+                            <option class="strat" value="td">Tower Defense</option>
+                            <option class="strat" value="turn">Turn Based</option>
+                            <option class="sport" value="music">Music Based</option>
+                            <option class="sport" value="race">Racing</option>
+                            <option class="sport" value="comp">Competitive Sport</option>
+                        </select>
+                    </fieldset>
+                </div>
+            </div>
+            <br>
+            <div class="row">                    
+                <fieldset class="form-group">
+                    <label for="comments">Anything else to say?</label>
+                    <textarea id="comments" name="comments" class="form-control"></textarea>
+                </fieldset>
+                <input type="submit" value="Done!" class="btn btn-info" />
+            </div>    
+        </form>
+
+
+
+
+
+	</body>
+
+	
+
+</html>
