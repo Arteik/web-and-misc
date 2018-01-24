@@ -1,5 +1,5 @@
-## Chem Lab
+##9 Solutions Lab
 
-This is a quick webapp made for Dr. Pompano as a replacement for the current 9solutions lab
+A webapp for the 9solutions lab, made for Prof. Pompano
 
-
+11.22.2017

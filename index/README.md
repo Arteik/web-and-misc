@@ -1,3 +1,3 @@
 ## Web Labs
 
-Labs from TJHSST Web Dev class
+Web Labs from TJHSST Web Dev 2016
